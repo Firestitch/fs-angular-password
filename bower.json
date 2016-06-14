@@ -1,0 +1,22 @@
+{
+  "name": "fs-angular-password",
+  "description": "",
+  "main": [
+    "dist/password.js",
+    "dist/password.css"
+  ],
+   "dependencies": {
+    "moment": ">= 2.10.0",
+    "fs-angular-modal": ">= 0.0.0",
+    "fs-angular-validate": ">= 0.0.0"
+  },  
+  "authors": [
+    "Firestitch Inc."
+  ],
+  "license": "MIT",
+  "ignore": [
+    "src",
+    ".gitignore"
+  ],
+  "private": false
+}
