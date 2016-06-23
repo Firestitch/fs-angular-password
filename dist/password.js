@@ -10,7 +10,9 @@
 			replace: false,
 	    	link: function($scope, element) {
 	    		$timeout(function() { 
-	    			angular.element(element[0].querySelectorAll('.password,.password-confirm')).attr('type','password');
+	    			angular.element(element[0].querySelectorAll('.password,.password-confirm'))
+	    				.attr('type','password')
+	    				.val('');
 	    		},50);
 	    	}
 	    }
@@ -35,7 +37,7 @@
 
             return service;
 
-            function show() {
+            function show(options) {
                 
                 var defer = $q.defer();
                 fsModal
@@ -45,7 +47,8 @@
                             escapeToClose: false,
                             skipHide: true,
                             focusOnOpen: false,
-                            clickOutsideToClose: false })
+                            clickOutsideToClose: false,
+                            locals: { options: options } })
                 .then(function(password) {
                     if(password) {
                         defer.resolve(password);
@@ -58,8 +61,9 @@
             }
         };
     })
-    .controller('FsPasswordModalCtrl', function($scope, fsModal) {
-         
+    .controller('FsPasswordModalCtrl', function($scope, fsModal, options) {
+        $scope.options = options;
+
         $scope.save = function() {
             fsModal.hide($scope.password);
         }
@@ -73,9 +77,11 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
   'use strict';
 
   $templateCache.put('views/directives/password.html',
-    "<md-dialog fs-password aria-label=\"Password\" class=\"fs-password-dialog\">\r" +
+    "<md-dialog fs-password autocomplete=\"on\" aria-label=\"Password\" class=\"fs-password-dialog\">\r" +
     "\n" +
     "    <form fs-validate=\"save()\">\r" +
+    "\n" +
+    "        <input type=\"text\" value=\"{{options.username}}\" name=\"username\"/>\r" +
     "\n" +
     "        <md-toolbar>\r" +
     "\n" +
@@ -95,7 +101,7 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "\n" +
     "                    <label>Chose a new Password</label>\r" +
     "\n" +
-    "                    <input type=\"text\" class=\"password\" ng-model=\"password\" required minlength=\"6\" minlength-message=\"Short passwords are easy to guess. Try one with at least 6 characters.\" autocomplete=\"off\" autofocus>\r" +
+    "                    <input type=\"password\" class=\"password\" ng-model=\"password\" required minlength=\"6\" minlength-message=\"Short passwords are easy to guess. Try one with at least 6 characters.\" autocomplete=\"off\" autofocus>\r" +
     "\n" +
     "                </md-input-container>\r" +
     "\n" +
@@ -103,7 +109,7 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "\n" +
     "                    <label>Confirm your Password</label>\r" +
     "\n" +
-    "                    <input type=\"text\" class=\"password-confirm\" ng-model=\"password_confirm\" compare=\"password\" compare-message=\"These passwords don't match. Try again?\" required autocomplete=\"off\">\r" +
+    "                    <input type=\"password\" class=\"password-confirm\" ng-model=\"password_confirm\" compare=\"password\" compare-message=\"These passwords don't match. Try again?\" required autocomplete=\"off\">\r" +
     "\n" +
     "                </md-input-container>\r" +
     "\n" +
@@ -128,6 +134,8 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "            </md-button>\r" +
     "\n" +
     "        </md-dialog-actions>\r" +
+    "\n" +
+    "        \r" +
     "\n" +
     "    </form>\r" +
     "\n" +

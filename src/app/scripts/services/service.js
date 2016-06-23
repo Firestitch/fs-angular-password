@@ -16,7 +16,7 @@
 
             return service;
 
-            function show() {
+            function show(options) {
                 
                 var defer = $q.defer();
                 fsModal
@@ -26,7 +26,8 @@
                             escapeToClose: false,
                             skipHide: true,
                             focusOnOpen: false,
-                            clickOutsideToClose: false })
+                            clickOutsideToClose: false,
+                            locals: { options: options } })
                 .then(function(password) {
                     if(password) {
                         defer.resolve(password);
@@ -39,8 +40,9 @@
             }
         };
     })
-    .controller('FsPasswordModalCtrl', function($scope, fsModal) {
-         
+    .controller('FsPasswordModalCtrl', function($scope, fsModal, options) {
+        $scope.options = options;
+
         $scope.save = function() {
             fsModal.hide($scope.password);
         }

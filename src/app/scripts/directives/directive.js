@@ -9,7 +9,9 @@
 			replace: false,
 	    	link: function($scope, element) {
 	    		$timeout(function() { 
-	    			angular.element(element[0].querySelectorAll('.password,.password-confirm')).attr('type','password');
+	    			angular.element(element[0].querySelectorAll('.password,.password-confirm'))
+	    				.attr('type','password')
+	    				.val('');
 	    		},50);
 	    	}
 	    }

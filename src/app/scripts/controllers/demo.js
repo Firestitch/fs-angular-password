@@ -7,14 +7,13 @@
   	$scope.user = { password: '' };
 
   	$scope.update = function() {
-		fsPassword.show()
-		.then(function(password) {
-			$scope.user.password = password;
-      //save()
-		})
-		.catch(function() {
-			console.log("The user cancelled the password update");
-		});
+  		fsPassword.show({ username: 'ray' })
+  		.then(function(password) {
+  			$scope.user.password = password;
+        //save()
+  		},function() {
+  			console.log("The user cancelled the password update");
+  		});
   	}
 
   	$scope.modal = function() {
