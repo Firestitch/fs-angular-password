@@ -127,15 +127,15 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "\n" +
     "            </md-button>\r" +
     "\n" +
-    "            <md-button type=\"submit\" class=\"md-accent md-raised\">\r" +
+    "            <md-button type=\"submit\" class=\"md-accent md-primary\">\r" +
     "\n" +
-    "                Update Password\r" +
+    "                Update\r" +
     "\n" +
     "            </md-button>\r" +
     "\n" +
     "        </md-dialog-actions>\r" +
     "\n" +
-    "        \r" +
+    "\r" +
     "\n" +
     "    </form>\r" +
     "\n" +
