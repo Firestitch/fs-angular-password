@@ -25,7 +25,7 @@
 				$scope.names = { 	password: 'password_' +fsUtil.guid(),
 									password_confirm: 'password_confirm_' +fsUtil.guid() };
 			},
-	    	link: function($scope, element) {
+	    	link: function($scope, element, attr) {
 
 	    		$scope.passwordElement = angular.element(element[0].querySelector('input[name="password"]'));
 	    		$scope.passwordConfirmElement = angular.element(element[0].querySelector('input[name="password_confirm"]'));
@@ -37,9 +37,12 @@
 	    					angular.element(this).removeAttr('readonly'); //tricks Chrome to think its readonly and not autofill
 	    				})
 	    				.attr('type','password')
-	    				.val('') //removes yellow autofill background
-	    				.focus();
-	    		},500);
+	    				.val(''); //removes yellow autofill background
+
+	    			if('fsFocus' in attr) {
+	    				$scope.passwordElement.focus();
+	    			}
+	    		},10);
 	    	}
 	    }
     })
@@ -118,7 +121,7 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "\n" +
     "\t    <label>Chose a new Password</label>\r" +
     "\n" +
-    "\t    <input type=\"text\" ng-model=\"password\" name=\"password\" minlength=\"{{validations.minlength.value}}\" minlength-message=\"{{validations.minlength.message}}\" autocomplete=\"off\" required autofocus/>\r" +
+    "\t    <input type=\"text\" ng-model=\"password\" name=\"password\" minlength=\"{{validations.minlength.value}}\" minlength-message=\"{{validations.minlength.message}}\" autocomplete=\"off\" required/>\r" +
     "\n" +
     "\t</md-input-container>\r" +
     "\n" +

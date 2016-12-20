@@ -24,7 +24,7 @@
 				$scope.names = { 	password: 'password_' +fsUtil.guid(),
 									password_confirm: 'password_confirm_' +fsUtil.guid() };
 			},
-	    	link: function($scope, element) {
+	    	link: function($scope, element, attr) {
 
 	    		$scope.passwordElement = angular.element(element[0].querySelector('input[name="password"]'));
 	    		$scope.passwordConfirmElement = angular.element(element[0].querySelector('input[name="password_confirm"]'));
@@ -36,9 +36,12 @@
 	    					angular.element(this).removeAttr('readonly'); //tricks Chrome to think its readonly and not autofill
 	    				})
 	    				.attr('type','password')
-	    				.val('') //removes yellow autofill background
-	    				.focus();
-	    		},500);
+	    				.val(''); //removes yellow autofill background
+
+	    			if('fsFocus' in attr) {
+	    				$scope.passwordElement.focus();
+	    			}
+	    		},10);
 	    	}
 	    }
     })
