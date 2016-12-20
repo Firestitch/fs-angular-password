@@ -7,7 +7,10 @@ angular
     'ngMaterial',
     'fs-angular-password'
 ])
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $qProvider) {
+
+    //"Possibly unhandled rejection" issue is found in 1.5.9 and 1.6.0-rc-0. More details at https://github.com/angular-ui/ui-router/issues/2889
+    $qProvider.errorOnUnhandledRejections(false);
 
     $urlRouterProvider.otherwise('/404');
     $urlRouterProvider.when('', '/demo');
