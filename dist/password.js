@@ -77,8 +77,27 @@
                 return $q(function(resolve,reject) {
                     fsModal
                     .show(  'FsPasswordModalCtrl',
-                            'views/directives/passwordmodal.html',
-                            {   preserveScope: true,
+                            '',
+                            {   template: '<md-dialog autocomplete="on" aria-label="Password" class="fs-password-dialog">' +
+                                            '<form fs-validate="save()" fs-instance="instance">' +
+                                                '<input type="text" value="{{options.username}}" name="username"/>' +
+                                                '<md-toolbar>' +
+                                                    '<div class="md-toolbar-tools">' +
+                                                        '<h2>Password Update</h2>' +
+                                                    '</div>' +
+                                                '</md-toolbar>' +
+                                                '<md-dialog-content>' +
+                                                    '<div class="md-dialog-content">' +
+                                                        '<fs-password fs-model="password" fs-focus></fs-password>' +
+                                                    '</div>' +
+                                                '</md-dialog-content>' +
+                                                '<md-dialog-actions>' +
+                                                    '<md-button ng-click="cancel()">Cancel</md-button>' +
+                                                    '<md-button type="submit" class="md-accent md-primary">Update</md-button>' +
+                                                '</md-dialog-actions>' +
+                                            '</form>' +
+                                        '</md-dialog>',
+                                        preserveScope: true,
                                 escapeToClose: false,
                                 skipHide: true,
                                 focusOnOpen: false,
