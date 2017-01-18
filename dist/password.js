@@ -56,7 +56,7 @@
 
         var _options = {
             validations: {
-                minlength: { value: 6, message: 'Short passwords are easy to guess. Try one with at least {{minlength}} characters.' }
+                minlength: { value: 5, message: 'Short passwords are easy to guess. Try one with at least {{minlength}} characters.' }
             }
         };
 
