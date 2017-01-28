@@ -29,7 +29,7 @@
 
 	    		$scope.passwordElement = angular.element(element[0].querySelector('input[name="password"]'));
 	    		$scope.passwordConfirmElement = angular.element(element[0].querySelector('input[name="password_confirm"]'));
-	    		$scope.passwordConfirmElement.data('scope',$scope);
+	    		$scope.passwordConfirmElement.data('custom-scope',$scope);
 
 	    		$timeout(function() {
 	    			angular.element(element[0].querySelectorAll('.password input,.password-confirm input'))
