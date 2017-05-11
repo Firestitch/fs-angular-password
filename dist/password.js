@@ -138,7 +138,7 @@ angular.module('fs-angular-password').run(['$templateCache', function($templateC
     "\n" +
     "\t<md-input-container>\r" +
     "\n" +
-    "\t    <label>Chose a new Password</label>\r" +
+    "\t    <label>Choose a new Password</label>\r" +
     "\n" +
     "\t    <input type=\"text\" ng-model=\"password\" name=\"password\" minlength=\"{{validations.minlength.value}}\" minlength-message=\"{{validations.minlength.message}}\" autocomplete=\"off\" required/>\r" +
     "\n" +
